@@ -1,68 +1,113 @@
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.*;
+
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.Dimension;
+import javax.swing.JPanel;
 
-public class app
+public class app extends JPanel implements ActionListener
 {
-    private static void buildGUI()
+    String cardText = "Card 1";
+
+    protected JButton b1, b2, b3;
+
+    public app()
     {
-        //Create window
-        //Window name, resolution & close behavior
+        
+
+        b1 = new JButton("<");
+        b1.setVerticalTextPosition(AbstractButton.CENTER);
+        b1.setHorizontalTextPosition(AbstractButton.LEADING);
+        b1.setPreferredSize(new Dimension(60, 60));
+        b1.setMnemonic(KeyEvent.VK_D);
+        b1.setActionCommand("left_button");
+        b1.setForeground(Color.BLACK);
+        b1.setBackground(Color.WHITE);
+
+        b2 = new JButton(cardText);
+        b2.setVerticalTextPosition(AbstractButton.BOTTOM);
+        b2.setHorizontalTextPosition(AbstractButton.CENTER);
+        b2.setPreferredSize(new Dimension(500, 140));
+        b2.setMnemonic(KeyEvent.VK_M);
+        b2.setActionCommand("middle_button");
+        b2.setForeground(Color.BLACK);
+        b2.setBackground(Color.WHITE);
+
+        b3 = new JButton(">");
+        b3.setMnemonic(KeyEvent.VK_E);
+        //////////////////////////////////////////////////
+        ////////////////////////////////////////////////////
+        b3.setPreferredSize(new Dimension(60, 60));
+        /////////////////////////////
+        b3.setActionCommand("right_button");
+        b3.setForeground(Color.BLACK);
+        b3.setBackground(Color.WHITE);
+
+        //Event listeners for buttons
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        b3.addActionListener(this);
+
+        add(b1);
+        add(b2);
+        add(b3);
+    }
+
+    //This is where the flashcards call their functions
+    public void actionPerformed(ActionEvent e)
+    {
+        if ("left_button".equals(e.getActionCommand()))
+        {
+            System.out.println("Left button pressed");
+            cardText = "Card 1";
+            b2.setText(cardText);
+        }
+        else if ("right_button".equals(e.getActionCommand()))
+        {
+            System.out.println("Right button pressed");
+            cardText = "Card 2";
+            b2.setText(cardText);
+        }
+        else
+        {
+            System.out.println("Middle button pressed");
+            cardText = "Reverse of Card";
+            b2.setText(cardText);
+        }
+    }
+
+
+    private static void createGUI()
+    {
+        //Window setup
         JFrame frame = new JFrame("Flash Cards | Java Swing");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(640, 360));
-        frame.setLayout(null);
-        //Window icon
-        ImageIcon icon = new ImageIcon("images/app_icon.png");
-        frame.setIconImage(icon.getImage());
+        ImageIcon img = new ImageIcon("images/app_icon.png");
+        frame.setIconImage(img.getImage());
+        frame.setPreferredSize(new Dimension(656, 375));
 
+        //Create content pane
+        app newContentPane = new app();
+        newContentPane.setOpaque(true);
+        frame.setContentPane(newContentPane);
 
-
-        //Window Content
-        JLabel label = new JLabel("Body Text :)");
-        frame.getContentPane().add(label);
-
-        JButton button1 = new JButton("Button 1 Text");
-        button1.setVerticalTextPosition(AbstractButton.CENTER);
-        button1.setHorizontalTextPosition(AbstractButton.LEADING);
-        Dimension size = button1.getPreferredSize();
-        button1.setBounds(100, 50, size.width, size.height);
-
-        frame.getContentPane().add(button1);
-
-
-
-
-        JButton button2 = new JButton("Button 2 Text");
-        button2.setVerticalTextPosition(AbstractButton.CENTER);
-        button2.setHorizontalTextPosition(AbstractButton.CENTER);
-
-        button2.setBounds(300, 180, size.width, size.height);
-
-        frame.getContentPane().add(button2);
-
-
-
-
-
-
-        //Display window in center of screen
+        //Display window
         frame.pack();
-        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
     public static void main(String[] args)
     {
-        //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable()
         {
             public void run()
             {
-                buildGUI();
+                createGUI();
             }
         });
     }
