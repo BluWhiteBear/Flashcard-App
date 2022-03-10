@@ -18,35 +18,32 @@ public class app extends JPanel implements ActionListener
 
     public app()
     {
-        
-
         b1 = new JButton("<");
         b1.setVerticalTextPosition(AbstractButton.CENTER);
         b1.setHorizontalTextPosition(AbstractButton.LEADING);
         b1.setPreferredSize(new Dimension(60, 60));
-        b1.setMnemonic(KeyEvent.VK_D);
-        b1.setActionCommand("left_button");
         b1.setForeground(Color.BLACK);
         b1.setBackground(Color.WHITE);
+        b1.setActionCommand("left_button");
+
 
         b2 = new JButton(cardText);
         b2.setVerticalTextPosition(AbstractButton.BOTTOM);
         b2.setHorizontalTextPosition(AbstractButton.CENTER);
         b2.setPreferredSize(new Dimension(500, 140));
-        b2.setMnemonic(KeyEvent.VK_M);
-        b2.setActionCommand("middle_button");
         b2.setForeground(Color.BLACK);
         b2.setBackground(Color.WHITE);
+        b2.setActionCommand("middle_button");
+
 
         b3 = new JButton(">");
-        b3.setMnemonic(KeyEvent.VK_E);
         //////////////////////////////////////////////////
         ////////////////////////////////////////////////////
         b3.setPreferredSize(new Dimension(60, 60));
-        /////////////////////////////
-        b3.setActionCommand("right_button");
         b3.setForeground(Color.BLACK);
         b3.setBackground(Color.WHITE);
+        b3.setActionCommand("right_button");
+
 
         //Event listeners for buttons
         b1.addActionListener(this);
@@ -76,7 +73,7 @@ public class app extends JPanel implements ActionListener
         else
         {
             System.out.println("Middle button pressed");
-            cardText = "Reverse of Card";
+            cardText = "Flipside";
             b2.setText(cardText);
         }
     }
@@ -90,6 +87,7 @@ public class app extends JPanel implements ActionListener
         ImageIcon img = new ImageIcon("images/app_icon.png");
         frame.setIconImage(img.getImage());
         frame.setPreferredSize(new Dimension(656, 375));
+        
 
         //Create content pane
         app newContentPane = new app();
