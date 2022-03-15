@@ -1,6 +1,6 @@
 import javax.swing.JOptionPane;
 
-public class flashcard_input extends app
+public class flashcard_input extends flashcard
 {
     static void increaseCardIndex ()
     {
