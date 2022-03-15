@@ -16,7 +16,7 @@ public class app extends JPanel
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        displayFlashcards(frame);
+        displayMenu(frame);
     }
 
     static void displayFlashcards (JFrame window)
