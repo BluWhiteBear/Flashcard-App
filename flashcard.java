@@ -117,30 +117,64 @@ public class flashcard extends app implements ActionListener
     public void actionPerformed(ActionEvent e) {
         if ("increase_card".equals(e.getActionCommand())) {
             System.out.println("Showing next card...");
-            flashcard_input.increaseCardIndex();
+            increaseCardIndex();
         } else if ("decrease_card".equals(e.getActionCommand())) {
             System.out.println("Showing previous card...");
-            flashcard_input.decreaseCardIndex();
+            decreaseCardIndex();
         } else if ("shuffle".equals(e.getActionCommand())) {
             System.out.println("Deck of cards has been shuffled...");
         } else if ("flip_card".equals(e.getActionCommand())) {
             System.out.println("Flipping current card...");
-            flashcard_input.flipCard();
+            flipCard();
         } else if ("toggle_show_marked".equals(e.getActionCommand())) {
             System.out.println("Now showing only marked cards...");
-            flashcard_input.showOnlyMarked();
+            showOnlyMarked();
         } else if ("toggle_marked".equals(e.getActionCommand())) {
             System.out.println("This card has been marked for later...");
-            flashcard_input.markCard();
+            markCard();
         } else if ("new_card".equals(e.getActionCommand())) {
             System.out.println("Opening new card UI...");
-            flashcard_input.newCard();
+            newCard();
         } else if ("back".equals(e.getActionCommand())) {
             System.out.println("Returning to main menu...");
-            flashcard_input.backToMenu();
+            backToMenu();
         } else {
             System.out.println("Input error...");
-            flashcard_input.inputErrorMessage();
+            inputErrorMessage();
         }
+    }
+
+    static void increaseCardIndex() {
+        if ((selectedCardIndex + 1) <= 10)
+            selectedCardIndex++;
+    }
+
+    static void decreaseCardIndex() {
+        if ((selectedCardIndex - 1) > 0)
+            selectedCardIndex--;
+    }
+
+    static void flipCard() {
+
+    }
+
+    static void showOnlyMarked() {
+
+    }
+
+    static void markCard() {
+
+    }
+
+    static void newCard() {
+
+    }
+
+    static void backToMenu() {
+
+    }
+
+    static void inputErrorMessage() {
+        JOptionPane.showMessageDialog(null, "Invalid input...", "Flash Cards | INPUT ERROR", 0);
     }
 }
