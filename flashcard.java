@@ -3,8 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class flashcard extends app implements ActionListener
-{
+public class flashcard extends app implements ActionListener {
     // UI Objects
     private JButton flipCard;
     private JButton increaseCard;
@@ -26,8 +25,7 @@ public class flashcard extends app implements ActionListener
     static int selectedCardIndex = 0;
     static boolean showOnlyMarked = false;
 
-    public flashcard()
-    {
+    public flashcard() {
         //Construct components, sets command names, and sets their styles
         flipCard = new JButton ("Card Text");
         flipCard.setActionCommand("flip_card");
@@ -47,7 +45,7 @@ public class flashcard extends app implements ActionListener
         decreaseCard.setBackground(Color.WHITE);
         decreaseCard.setFocusPainted(false);
 
-        deckName = new JLabel ("Deck Name");
+        deckName = new JLabel ("[Name of deck]");
 
         shuffleDeck = new JButton ("Shuffle");
         shuffleDeck.setActionCommand("shuffle");
@@ -117,27 +115,35 @@ public class flashcard extends app implements ActionListener
         if ("increase_card".equals(e.getActionCommand())) {
             System.out.println("Showing next card...");
             increaseCardIndex();
-        } else if ("decrease_card".equals(e.getActionCommand())) {
+        }
+        else if ("decrease_card".equals(e.getActionCommand())) {
             System.out.println("Showing previous card...");
             decreaseCardIndex();
-        } else if ("shuffle".equals(e.getActionCommand())) {
+        }
+        else if ("shuffle".equals(e.getActionCommand())) {
             System.out.println("Deck of cards has been shuffled...");
-        } else if ("flip_card".equals(e.getActionCommand())) {
+        }
+        else if ("flip_card".equals(e.getActionCommand())) {
             System.out.println("Flipping current card...");
             flipCard();
-        } else if ("toggle_show_marked".equals(e.getActionCommand())) {
+        }
+        else if ("toggle_show_marked".equals(e.getActionCommand())) {
             System.out.println("Now showing only marked cards...");
             showOnlyMarked();
-        } else if ("toggle_marked".equals(e.getActionCommand())) {
+        }
+        else if ("toggle_marked".equals(e.getActionCommand())) {
             System.out.println("This card has been marked for later...");
             markCard();
-        } else if ("new_card".equals(e.getActionCommand())) {
+        }
+        else if ("new_card".equals(e.getActionCommand())) {
             System.out.println("Opening new card UI...");
             newCard();
-        } else if ("back".equals(e.getActionCommand())) {
+        }
+        else if ("back".equals(e.getActionCommand())) {
             System.out.println("Returning to main menu...");
             backToMenu();
-        } else {
+        }
+        else {
             System.out.println("Input error...");
             inputErrorMessage();
         }
