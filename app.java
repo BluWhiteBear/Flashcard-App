@@ -1,133 +1,166 @@
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.*;
-
-import javax.swing.AbstractButton;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
 
 public class app extends JPanel implements ActionListener
 {
+    //UI Objects
+    private JButton flipCard;
+    private JButton increaseCard;
+    private JButton decreaseCard;
+    private JLabel deckName;
+    private JButton shuffleDeck;
+    private JCheckBox markedOnlyToggle;
+    private JCheckBox markedToggle;
+    private JButton newCard;
+    private JButton returnToMenu;
+
+    //Variable Declaration
     String deckTitle = "Deck 1";
     String cardText = "Card 1";
 
-    protected JButton b1, b2, b3, b4;
+    int selectedCardIndex;
 
     public app()
     {
-        JLabel title = new JLabel();
-        title.setVerticalTextPosition(AbstractButton.TOP);
-        title.setHorizontalTextPosition(AbstractButton.CENTER);
-        title.setPreferredSize(new Dimension(50, 50));
-        title.setText(deckTitle);
+        //Construct components, sets command names, and sets their styles
+        flipCard = new JButton ("Card Text");
+        flipCard.setActionCommand("flip_card");
+        flipCard.setForeground(Color.BLACK);
+        flipCard.setBackground(Color.WHITE);
+        flipCard.setFocusPainted(false);
 
+        increaseCard = new JButton (">");
+        increaseCard.setActionCommand("increase_card");
+        increaseCard.setForeground(Color.BLACK);
+        increaseCard.setBackground(Color.WHITE);
+        increaseCard.setFocusPainted(false);
 
-        b1 = new JButton("<");
-        b1.setVerticalTextPosition(AbstractButton.CENTER);
-        b1.setHorizontalTextPosition(AbstractButton.LEADING);
-        b1.setPreferredSize(new Dimension(50, 50));
-        b1.setForeground(Color.BLACK);
-        b1.setBackground(Color.WHITE);
-        b1.setActionCommand("left_button");
+        decreaseCard = new JButton ("<");
+        decreaseCard.setActionCommand("decrease_card");
+        decreaseCard.setForeground(Color.BLACK);
+        decreaseCard.setBackground(Color.WHITE);
+        decreaseCard.setFocusPainted(false);
 
+        deckName = new JLabel ("Deck Name");
 
-        b2 = new JButton(cardText);
-        b2.setVerticalTextPosition(AbstractButton.BOTTOM);
-        b2.setHorizontalTextPosition(AbstractButton.CENTER);
-        b2.setPreferredSize(new Dimension(500, 180));
-        b2.setForeground(Color.BLACK);
-        b2.setBackground(Color.WHITE);
-        b2.setActionCommand("middle_button");
+        shuffleDeck = new JButton ("Shuffle");
+        shuffleDeck.setActionCommand("shuffle");
+        shuffleDeck.setForeground(Color.BLACK);
+        shuffleDeck.setBackground(Color.WHITE);
+        shuffleDeck.setFocusPainted(false);
 
+        markedOnlyToggle = new JCheckBox ("Marked cards only?");
+        markedOnlyToggle.setActionCommand("toggle_show_marked");
+        markedOnlyToggle.setFocusPainted(false);
 
-        b3 = new JButton(">");
-        //////////////////////////////////////////////////
-        ////////////////////////////////////////////////////
-        b3.setPreferredSize(new Dimension(50, 50));
-        b3.setForeground(Color.BLACK);
-        b3.setBackground(Color.WHITE);
-        b3.setActionCommand("right_button");
+        markedToggle = new JCheckBox ("Mark for later");
+        markedToggle.setActionCommand("toggle_marked");
+        markedToggle.setFocusPainted(false);
 
+        newCard = new JButton ("+");
+        newCard.setActionCommand("new_card");
+        newCard.setForeground(Color.BLACK);
+        newCard.setBackground(Color.WHITE);
+        newCard.setFocusPainted(false);
 
-        b4 = new JButton("Shuffle");
-        b4.setVerticalTextPosition(AbstractButton.TOP);
-        b4.setHorizontalTextPosition(AbstractButton.CENTER);
-        b4.setPreferredSize(new Dimension(300, 50));
-        b4.setForeground(Color.BLACK);
-        b4.setBackground(Color.WHITE);
-        b4.setActionCommand("shuffle_button");
+        returnToMenu = new JButton ("Back");
+        returnToMenu.setActionCommand("back");
+        returnToMenu.setForeground(Color.BLACK);
+        returnToMenu.setBackground(Color.WHITE);
+        returnToMenu.setFocusPainted(false);
 
+        //Adjusts size and sets layout
+        setPreferredSize (new Dimension (919, 333));
+        setLayout (null);
 
-        //Event listeners for buttons
-        b1.addActionListener(this);
-        b2.addActionListener(this);
-        b3.addActionListener(this);
-        b4.addActionListener(this);
+        //Adds components
+        add (flipCard);
+        add (increaseCard);
+        add (decreaseCard);
+        add (deckName);
+        add (shuffleDeck);
+        add (markedOnlyToggle);
+        add (markedToggle);
+        add (newCard);
+        add (returnToMenu);
 
-        add(title);
-        add(b1);
-        add(b2);
-        add(b3);
-        add(b4);
+        //Creates event listeners for buttons
+        flipCard.addActionListener(this);
+        increaseCard.addActionListener(this);
+        decreaseCard.addActionListener(this);
+        shuffleDeck.addActionListener(this);
+        markedOnlyToggle.addActionListener(this);
+        markedToggle.addActionListener(this);
+        newCard.addActionListener(this);
+        returnToMenu.addActionListener(this);
+
+        //Sets component bounds
+        flipCard.setBounds (190, 45, 550, 192);
+        increaseCard.setBounds (745, 110, 60, 60);
+        decreaseCard.setBounds (125, 110, 60, 60);
+        deckName.setBounds (430, 15, 70, 25);
+        shuffleDeck.setBounds (350, 245, 220, 50);
+        markedOnlyToggle.setBounds (5, 40, 145, 25);
+        markedToggle.setBounds (570, 245, 110, 50);
+        newCard.setBounds (870, 5, 45, 45);
+        returnToMenu.setBounds (5, 5, 105, 30);
+        
+    }
+
+    //Creates and displays GUI
+    public static void main (String[] args)
+    {
+        JFrame frame = new JFrame ("Flash Cards | Java Swing");
+        ImageIcon img = new ImageIcon("images/app_icon.png");
+        frame.setIconImage(img.getImage());
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+
+        frame.getContentPane().add (new app());
+        frame.pack();
+        frame.setVisible (true);
     }
 
     //This is where the flashcards call their functions
     public void actionPerformed(ActionEvent e)
     {
-        if ("left_button".equals(e.getActionCommand()))
+        if ("increase_card".equals(e.getActionCommand()))
         {
-            System.out.println("Left button pressed");
-            cardText = "Card 1";
-            b2.setText(cardText);
+            System.out.println("Showing next card...");
         }
-        else if ("right_button".equals(e.getActionCommand()))
+        else if ("decrease_card".equals(e.getActionCommand()))
         {
-            System.out.println("Right button pressed");
-            cardText = "Card 2";
-            b2.setText(cardText);
+            System.out.println("Showing previous card...");
+        }
+        else if ("shuffle".equals(e.getActionCommand()))
+        {
+            System.out.println("Deck of cards has been shuffled...");
+        }
+        else if ("flip_card".equals(e.getActionCommand()))
+        {
+            System.out.println("Flipping current card...");
+        }
+        else if ("toggle_show_marked".equals(e.getActionCommand()))
+        {
+            System.out.println("Now showing only marked cards...");
+        }
+        else if ("toggle_marked".equals(e.getActionCommand()))
+        {
+            System.out.println("This card has been marked for later...");
+        }
+        else if ("new_card".equals(e.getActionCommand()))
+        {
+            System.out.println("Opening new card UI...");
+        }
+        else if ("back".equals(e.getActionCommand()))
+        {
+            System.out.println("Returning to main menu...");
         }
         else
         {
-            System.out.println("Middle button pressed");
-            cardText = "Flipside";
-            b2.setText(cardText);
+            System.out.println("Input error...");
         }
-    }
-
-
-    private static void createGUI()
-    {
-        //Window setup
-        JFrame frame = new JFrame("Flash Cards | Java Swing");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon img = new ImageIcon("images/app_icon.png");
-        frame.setIconImage(img.getImage());
-        frame.setPreferredSize(new Dimension(775, 375));
-        
-
-        //Create content pane
-        app newContentPane = new app();
-        newContentPane.setOpaque(true);
-        frame.setContentPane(newContentPane);
-
-        //Display window
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args)
-    {
-        javax.swing.SwingUtilities.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                createGUI();
-            }
-        });
     }
 }
