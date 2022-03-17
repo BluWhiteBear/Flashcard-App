@@ -5,6 +5,10 @@ import javax.swing.event.*;
 
 public class app extends JPanel
 {
+    Color backgroundColor = (new Color(24, 24, 24));
+    Color buttonColor = (new Color(35, 35, 35));
+    Color fontColor = (new Color(255, 255, 255));
+    
     //Creates and displays GUI
     public static JFrame frame = new JFrame("Flash Cards | Java Swing");
 
