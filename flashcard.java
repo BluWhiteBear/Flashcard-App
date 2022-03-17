@@ -17,8 +17,8 @@ public class flashcard extends app implements ActionListener {
 
     // Variable Declaration
     // Output
-    static String deckTitle = "Deck 1";
-    static String cardText = "Card 1";
+    static String deckTitle = "Long Placeholder Deck Name";
+    static String cardText = "This is placeholder content for testing the text wrap on this big ol' button. This bit of text is particularly long. Hopefully it's wrapping correctly...";
     static boolean cardIsMarked = false;
 
     // Input
@@ -27,54 +27,65 @@ public class flashcard extends app implements ActionListener {
 
     public flashcard() {
         //Construct components, sets command names, and sets their styles
-        flipCard = new JButton ("Card Text");
+        flipCard = new JButton (cardText);
         flipCard.setActionCommand("flip_card");
-        flipCard.setForeground(Color.BLACK);
-        flipCard.setBackground(Color.WHITE);
+        flipCard.setForeground(fontColor);
+        flipCard.setBackground(buttonColor);
         flipCard.setFocusPainted(false);
+        flipCard.setBorderPainted(false);
 
         increaseCard = new JButton (">");
         increaseCard.setActionCommand("increase_card");
-        increaseCard.setForeground(Color.BLACK);
-        increaseCard.setBackground(Color.WHITE);
+        increaseCard.setForeground(fontColor);
+        increaseCard.setBackground(buttonColor);
         increaseCard.setFocusPainted(false);
+        increaseCard.setBorderPainted(false);
 
         decreaseCard = new JButton ("<");
         decreaseCard.setActionCommand("decrease_card");
-        decreaseCard.setForeground(Color.BLACK);
-        decreaseCard.setBackground(Color.WHITE);
+        decreaseCard.setForeground(fontColor);
+        decreaseCard.setBackground(buttonColor);
         decreaseCard.setFocusPainted(false);
+        decreaseCard.setBorderPainted(false);
 
-        deckName = new JLabel ("[Name of deck]");
+        deckName = new JLabel (deckTitle, SwingConstants.CENTER);
 
         shuffleDeck = new JButton ("Shuffle");
         shuffleDeck.setActionCommand("shuffle");
-        shuffleDeck.setForeground(Color.BLACK);
-        shuffleDeck.setBackground(Color.WHITE);
+        shuffleDeck.setForeground(fontColor);
+        shuffleDeck.setBackground(buttonColor);
         shuffleDeck.setFocusPainted(false);
+        shuffleDeck.setBorderPainted(false);
 
         markedOnlyToggle = new JCheckBox ("Marked cards only?");
         markedOnlyToggle.setActionCommand("toggle_show_marked");
+        markedOnlyToggle.setForeground(fontColor);
+        markedOnlyToggle.setBackground(backgroundColor);
         markedOnlyToggle.setFocusPainted(false);
 
         markedToggle = new JCheckBox ("Mark for later");
         markedToggle.setActionCommand("toggle_marked");
+        markedToggle.setForeground(fontColor);
+        markedToggle.setBackground(backgroundColor);
         markedToggle.setFocusPainted(false);
 
         newCard = new JButton ("+");
         newCard.setActionCommand("new_card");
-        newCard.setForeground(Color.BLACK);
-        newCard.setBackground(Color.WHITE);
+        newCard.setForeground(fontColor);
+        newCard.setBackground(buttonColor);
         newCard.setFocusPainted(false);
+        newCard.setBorderPainted(false);
 
         returnToMenu = new JButton ("Back");
         returnToMenu.setActionCommand("back");
-        returnToMenu.setForeground(Color.BLACK);
-        returnToMenu.setBackground(Color.WHITE);
+        returnToMenu.setForeground(fontColor);
+        returnToMenu.setBackground(buttonColor);
         returnToMenu.setFocusPainted(false);
+        returnToMenu.setBorderPainted(false);
 
         //Adjusts size and sets layout
         setPreferredSize (new Dimension (919, 333));
+        setBackground(backgroundColor);
         setLayout (null);
 
         //Adds components
@@ -102,7 +113,7 @@ public class flashcard extends app implements ActionListener {
         flipCard.setBounds (190, 45, 550, 192);
         increaseCard.setBounds (745, 110, 60, 60);
         decreaseCard.setBounds (125, 110, 60, 60);
-        deckName.setBounds (430, 15, 70, 25);
+        deckName.setBounds (190, 15, 550, 30);
         shuffleDeck.setBounds (350, 245, 220, 50);
         markedOnlyToggle.setBounds (5, 40, 145, 25);
         markedToggle.setBounds (570, 245, 110, 50);
