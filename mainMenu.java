@@ -177,6 +177,7 @@ public class mainMenu extends app implements ActionListener {
             System.out.println("Opening new deck UI...");
             String deckFileName = JOptionPane.showInputDialog("What is the name of the deck.");
             createNewDeck(deckFileName);
+            System.out.println(deckFileName);
         }
         else {
             System.out.println("Input error...");
@@ -201,14 +202,7 @@ public class mainMenu extends app implements ActionListener {
     }
 
     static void createNewDeck(String deckFileName) {
-        try (
-            FileWriter myWriter = new FileWriter(deckFileName + ".txt")) {
-                myWriter.write(deckFileName + " Deck");
-                
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Successfully wrote to the file.");
+        fileCreator.newFile(deckFileName);
     }
 
     static void inputErrorMessage() {
