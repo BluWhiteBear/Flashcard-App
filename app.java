@@ -13,7 +13,7 @@ public class app extends JPanel
     
     static String deckFileName;
     
-   
+   //stuff
     
     //Creates and displays GUI
     public static JFrame frame = new JFrame("Flash Cards | Java Swing");
