@@ -2,9 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
-
 import java.io.FileWriter;
-// import java.io.IOException;
 import java.io.IOException;
 
 public class mainMenu extends app implements ActionListener {
@@ -176,8 +174,9 @@ public class mainMenu extends app implements ActionListener {
         else if ("new_deck".equals(e.getActionCommand())) {
             System.out.println("Opening new deck UI...");
             String deckFileName = JOptionPane.showInputDialog("What is the name of the deck.");
+            if (deckFileName != null) {
             createNewDeck(deckFileName);
-            System.out.println(deckFileName);
+            }
         }
         else {
             System.out.println("Input error...");
