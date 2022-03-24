@@ -3,6 +3,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import java.io.FileWriter;
+// import java.io.IOException;
+import java.io.IOException;
+
 public class mainMenu extends app implements ActionListener {
     // UI Objects
     private JLabel deckName;
@@ -19,7 +23,7 @@ public class mainMenu extends app implements ActionListener {
     private JButton incrementPage;
 
     // Variable Declaration
-    String deckFileName;
+    static String deckFileName;
 
     public mainMenu() {
         // Construct components, sets command names, and sets their styles
@@ -172,7 +176,8 @@ public class mainMenu extends app implements ActionListener {
         }
         else if ("new_deck".equals(e.getActionCommand())) {
             System.out.println("Opening new deck UI...");
-            createNewDeck();
+            String deckFileName = JOptionPane.showInputDialog("What is the name of the deck.");
+            createNewDeck(deckFileName);
         }
         else {
             System.out.println("Input error...");
@@ -196,8 +201,15 @@ public class mainMenu extends app implements ActionListener {
 
     }
 
-    static void createNewDeck() {
-
+    static void createNewDeck(String deckFileName) {
+        try (
+            FileWriter myWriter = new FileWriter(deckFileName + ".txt")) {
+                myWriter.write(deckFileName + " Deck");
+                
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Successfully wrote to the file.");
     }
 
     static void inputErrorMessage() {
