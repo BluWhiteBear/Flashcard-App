@@ -23,7 +23,6 @@ public class mainMenu extends app implements ActionListener {
     private JButton incrementPage;
 
     // Variable Declaration
-    static String deckFileName;
 
     public mainMenu() {
         // Construct components, sets command names, and sets their styles

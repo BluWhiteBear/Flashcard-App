@@ -16,6 +16,7 @@ public class flashcard extends app implements ActionListener {
     private JButton returnToMenu;
 
     // Variable Declaration
+    static String newCardData;
     // Output
     static String deckTitle = "Long Placeholder Deck Name";
     static String cardText = "This is placeholder content for testing the text wrap on this big ol' button. This bit of text is particularly long. Hopefully it's wrapping correctly...";
@@ -148,6 +149,7 @@ public class flashcard extends app implements ActionListener {
         }
         else if ("new_card".equals(e.getActionCommand())) {
             System.out.println("Opening new card UI...");
+            String newCardData = JOptionPane.showInputDialog("Card info \nFormat: Front,Back");
             newCard();
         }
         else if ("back".equals(e.getActionCommand())) {
