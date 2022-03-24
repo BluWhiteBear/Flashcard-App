@@ -2,6 +2,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class flashcard extends app implements ActionListener {
     // UI Objects
