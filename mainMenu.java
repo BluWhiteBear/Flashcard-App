@@ -112,6 +112,7 @@ public class mainMenu extends app implements ActionListener
         decrementPage.setBackground(buttonColor);
         decrementPage.setFocusPainted(false);
         decrementPage.setBorderPainted(false);
+        decrementPage.setEnabled(false);
 
         incrementPage = new JButton (">>");
         incrementPage.setActionCommand("");
@@ -119,6 +120,7 @@ public class mainMenu extends app implements ActionListener
         incrementPage.setBackground(buttonColor);
         incrementPage.setFocusPainted(false);
         incrementPage.setBorderPainted(false);
+        incrementPage.setEnabled(false);
 
         fileBrowser = new JButton ("📁");
         fileBrowser.setActionCommand("file_browser");
