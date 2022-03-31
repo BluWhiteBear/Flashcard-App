@@ -177,15 +177,15 @@ public class flashcard extends app implements ActionListener
 	public void actionPerformed(ActionEvent e)
     {
 		if ("increase_card".equals(e.getActionCommand())) {
-			System.out.println("Showing next card..." + selectedCardIndex);
+			System.out.println("Showing next card...");
 			try {
 				increaseCardIndex();
 			} catch (IOException e1) {}
 		} else if ("decrease_card".equals(e.getActionCommand())) {
-			System.out.println("Showing previous card..." + selectedCardIndex);
+			System.out.println("Showing previous card...");
 			try {
 				decreaseCardIndex();
-			} catch (IOException e1) {}
+			} catch (IOException e2) {}
 		} else if ("shuffle".equals(e.getActionCommand())) {
 			System.out.println("Deck of cards has been shuffled...");
 		} else if ("flip_card".equals(e.getActionCommand())) {
@@ -211,7 +211,7 @@ public class flashcard extends app implements ActionListener
 	}
 
 	static void increaseCardIndex() throws IOException {
-		if ((selectedCardIndex + 3)<= 10)
+		if ((selectedCardIndex + 1)<= 10)
 		{
 			selectedCardIndex++;
 			updateCurrentCard();
@@ -219,7 +219,7 @@ public class flashcard extends app implements ActionListener
 	}
 
 	static void decreaseCardIndex() throws IOException {
-		if ((selectedCardIndex - 3) > 0)
+		if ((selectedCardIndex - 1) > 0)
 		{
 			selectedCardIndex--;
 			updateCurrentCard();
