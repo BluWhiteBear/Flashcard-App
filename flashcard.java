@@ -233,4 +233,23 @@ public class flashcard extends app implements ActionListener
 			updateCurrentCard();
 		}
 	}
-
+    static void flipCard() {
+		if (flipCard.getText() == cardText) {
+			flipCard.setText(cardTextBack);
+		} else {
+			flipCard.setText(cardText);
+		}
+	}
+	static void showOnlyMarked() {
+	}
+	static void markCard() {
+	}
+	static void newCard() {
+	}
+	static void backToMenu() {
+		displayMenu(frame);
+	}
+	static void inputErrorMessage() {
+		JOptionPane.showMessageDialog(null, "Invalid input...", "Flash Cards | INPUT ERROR", 0);
+	}
+}
