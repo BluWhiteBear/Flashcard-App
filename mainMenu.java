@@ -28,6 +28,7 @@ public class mainMenu extends app implements ActionListener
     private JButton trash_4;
     private JButton decrementPage;
     private JButton incrementPage;
+    private JButton fileBrowser;
 
     // Variable Declaration
 
@@ -116,6 +117,13 @@ public class mainMenu extends app implements ActionListener
         incrementPage.setFocusPainted(false);
         incrementPage.setBorderPainted(false);
 
+        fileBrowser = new JButton ("📁");
+        fileBrowser.setActionCommand("file_browser");
+        fileBrowser.setForeground(fontColor);
+        fileBrowser.setBackground(buttonColor);
+        fileBrowser.setFocusPainted(false);
+        fileBrowser.setBorderPainted(false);
+
         // Adjusts size and sets layout
         setPreferredSize(new Dimension(919, 333));
         setBackground(backgroundColor);
@@ -134,6 +142,7 @@ public class mainMenu extends app implements ActionListener
         add(trash_4);
         add(decrementPage);
         add(incrementPage);
+        add(fileBrowser);
 
         // Creates event listeners for buttons
         deckButton_1.addActionListener(this);
@@ -147,12 +156,13 @@ public class mainMenu extends app implements ActionListener
         trash_4.addActionListener(this);
         decrementPage.addActionListener(this);
         incrementPage.addActionListener(this);
+        fileBrowser.addActionListener(this);
         
 
         // Sets component bounds
         deckButton_1.setBounds (190, 40, 495, 52);
         deckName.setBounds (430, 15, 70, 25);
-        newDeck.setBounds (870, 5, 45, 45);
+        newDeck.setBounds (855, 10, 50, 50);
         deckButton_2.setBounds (190, 100, 495, 52);
         deckButton_3.setBounds (190, 160, 495, 52);
         deckButton_4.setBounds (190, 220, 495, 52);
@@ -162,6 +172,7 @@ public class mainMenu extends app implements ActionListener
         trash_4.setBounds (690, 220, 55, 52);
         decrementPage.setBounds (190, 280, 100, 25);
         incrementPage.setBounds (645, 280, 100, 25);
+        fileBrowser.setBounds (855, 70, 50, 50);
 
         populateDeckButtons();
     }
@@ -221,6 +232,11 @@ public class mainMenu extends app implements ActionListener
             if (deckName != null) {
             createNewDeck(deckName);
             }
+        }
+        else if ("file_browser".equals(e.getActionCommand())) {
+            try {
+                Runtime.getRuntime().exec("explorer.exe /select, /decks");
+            } catch (IOException IOException) {}
         }
         else {
             System.out.println("Input error...");
