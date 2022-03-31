@@ -2,13 +2,19 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 
 public class mainMenu extends app implements ActionListener
 {
+    static String decks[];
+
     // UI Objects
     private JLabel deckName;
     private JButton newDeck;
@@ -27,6 +33,8 @@ public class mainMenu extends app implements ActionListener
 
     public mainMenu()
     {
+        createArrayOfDeckNames();
+
         // Construct components, sets command names, and sets their styles
 
         deckButton_1 = new JButton ("deckButton_1");
@@ -157,6 +165,16 @@ public class mainMenu extends app implements ActionListener
         incrementPage.setBounds (645, 280, 100, 25);
     }
 
+    public static void createArrayOfDeckNames()
+    {
+        File folder = new File("decks/");
+        decks = folder.list();
+        for (int i = 0; i < decks.length; i++)
+        {
+            System.out.println("File Names: " + decks[i]);
+        }
+    }
+
     // This is where the flashcards call their functions
     public void actionPerformed(ActionEvent e)
     {
@@ -178,9 +196,9 @@ public class mainMenu extends app implements ActionListener
         }
         else if ("new_deck".equals(e.getActionCommand())) {
             System.out.println("Opening new deck UI...");
-            String deckFileName = JOptionPane.showInputDialog("What is the name of the deck.");
-            if (deckFileName != null) {
-            createNewDeck(deckFileName);
+            String deckName = JOptionPane.showInputDialog("Name of new deck:");
+            if (deckName != null) {
+            createNewDeck(deckName);
             }
         }
         else {
