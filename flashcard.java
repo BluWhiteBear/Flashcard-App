@@ -3,7 +3,12 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 
@@ -34,7 +39,7 @@ public class flashcard extends app implements ActionListener
     static int selectedCardIndex = 0;
     static boolean showOnlyMarked = false;
 
-    public flashcard()
+    public flashcard() throws IOException
     {
         //Construct components, sets command names, and sets their styles
         flipCard = new JButton (cardText);
@@ -129,12 +134,42 @@ public class flashcard extends app implements ActionListener
         markedToggle.setBounds (570, 245, 110, 50);
         newCard.setBounds (870, 5, 45, 45);
         returnToMenu.setBounds (5, 5, 105, 30);
+
+        updateCurrentCard();
     }
 
     // Updates the current card based on the selected deck and index
-    public static void updateCurrentCard()
-    {
+    public static void updateCurrentCard() throws IOException{
         
+		// String filename = "deck_DoNotDelete.txt";
+
+		// list that holds strings of a file
+		List<String> listOfStrings = new ArrayList<String>();
+	
+		// load data from file
+		BufferedReader bf = new BufferedReader(new FileReader("decks/" + decks[0]));
+	
+		// read entire line as string
+		String line = bf.readLine();
+	
+		// checking for end of file
+		while (line != null) {
+			listOfStrings.add(line);
+			line = bf.readLine();
+		}
+	
+		// closing bufferreader object
+		bf.close();
+	
+		// storing the data in arraylist to array
+		String[] cardInfo = listOfStrings.toArray(new String[0]);
+	
+		// printing each line of file
+		// which is stored in array
+		for (String str : cardInfo) {
+			System.out.println(str);
+		}
+		System.out.println(cardInfo[0]);
     }
 
     // This is where the flashcards call their functions

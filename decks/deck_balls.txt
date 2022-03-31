@@ -1,4 +1,4 @@
-testDeck1 Deck
+balls Deck
 front
 back
 false

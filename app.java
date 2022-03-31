@@ -33,7 +33,7 @@ public class app extends JPanel
         displayMenu(frame);
     }
 
-    static void displayFlashcards (JFrame window)
+    static void displayFlashcards (JFrame window) throws IOException
     {
         window.getContentPane().removeAll();
         window.getContentPane().add(new flashcard());
