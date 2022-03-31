@@ -1,0 +1,34 @@
+Deck 3
+Card 1 Front
+Card 1 Back
+False
+Card 2 Front
+Card 2 Back
+False
+Card 3 Front
+Card 3 Back
+False
+Card 4 Front
+Card 4 Back
+False
+Card 5 Front
+Card 5 Back
+False
+Card 6 Front
+Card 6 Back
+False
+Card 7 Front
+Card 7 Back
+False
+Card 8 Front
+Card 8 Back
+False
+Card 9 Front
+Card 9 Back
+False
+Card 10 Front
+Card 10 Back
+False
+Card 11 Front
+Card 11 Back
+False
