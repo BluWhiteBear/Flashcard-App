@@ -12,6 +12,8 @@ import java.nio.file.Paths;
 
 public class mainMenu extends app implements ActionListener
 {
+    static int currentDeckIndex = 1;
+
     // UI Objects
     private JLabel deckName;
     private JButton newDeck;
@@ -216,19 +218,23 @@ public class mainMenu extends app implements ActionListener
     }
 
     static void openDeckIndex1() {
+        selectedDeckFileName = decks[0];
         displayFlashcards(frame);
     }
 
     static void openDeckIndex2() {
-
+        selectedDeckFileName = decks[1];
+        displayFlashcards(frame);
     }
 
     static void openDeckIndex3() {
-
+        selectedDeckFileName = decks[2];
+        displayFlashcards(frame);
     }
 
     static void openDeckIndex4() {
-
+        selectedDeckFileName = decks[3];
+        displayFlashcards(frame);
     }
 
     static void createNewDeck(String deckFileName) {

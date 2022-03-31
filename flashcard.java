@@ -131,8 +131,8 @@ public class flashcard extends app implements ActionListener
         returnToMenu.setBounds (5, 5, 105, 30);
     }
 
-    // This loads the currently selected deck into an array based on the deckfile name
-    public static void loadSelectedDeck()
+    // Updates the current card based on the selected deck and index
+    public static void updateCurrentCard()
     {
         
     }
