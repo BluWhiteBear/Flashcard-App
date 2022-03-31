@@ -10,12 +10,11 @@ import java.util.List;
 
 public class flashcard extends app implements ActionListener
 {
-
     // UI Objects
+    private static JLabel deckName;
     private static JButton flipCard;
     private JButton increaseCard;
     private JButton decreaseCard;
-    private static JLabel deckName;
     private JButton shuffleDeck;
     private JCheckBox markedOnlyToggle;
     private JCheckBox markedToggle;
@@ -23,14 +22,20 @@ public class flashcard extends app implements ActionListener
     private JButton returnToMenu;
 
     // Variable Declaration
+
     // static String newCardData;
     // Output
+=======
+
     static String deckTitle;
     static String cardText;
     static String cardTextBack;
     static boolean cardIsMarked;
 
+
     static int deckLength;
+=======
+
 
     // Input
     static int selectedCardIndex = 0;
@@ -142,26 +147,26 @@ public class flashcard extends app implements ActionListener
     // Updates the current card based on the selected deck and index
     public static void updateCurrentCard() throws IOException{
         
-        // list that holds strings of a file
+        // List that holds strings of a file
 		List<String> listOfCards = new ArrayList<String>();
         
-		// load data from file
+		// Loads data from txt file
 		BufferedReader fileFinder = new BufferedReader(new FileReader("decks/" + selectedDeckFileName));
         
-		// read entire line as string
+		// Converts txt file lines into strings
 		String line = fileFinder.readLine();
         
 
-		// checking for end of file
+		// Checks for end of txt file
 		while (line != null) {
             listOfCards.add(line);
 			line = fileFinder.readLine();
 		}
         
-		// closing bufferreader object
+		// Closes bufferreader object
 		fileFinder.close();
         
-		// storing the data in arraylist to array
+		// Stores the data in arraylist to array
 		String cardInfo[] = listOfCards.toArray(new String[0]);
         deckLength = cardInfo.length;
         try {
@@ -170,9 +175,7 @@ public class flashcard extends app implements ActionListener
             cardTextBack = cardInfo[2 + (selectedCardIndex*3)];
             cardIsMarked = Boolean.parseBoolean(cardInfo[3 + (selectedCardIndex*3)]);
             updateFlashcardText();
-        } catch (Exception e) {
-            //TODO: handle exception
-        }
+        } catch (Exception e) {}
     }
 
     public static void updateFlashcardText()
