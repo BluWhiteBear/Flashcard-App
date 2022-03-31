@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -22,18 +23,20 @@ public class flashcard extends app implements ActionListener
     private JButton returnToMenu;
 
     // Variable Declaration
-    static String newCardData;
+    // static String newCardData;
     // Output
     static String deckTitle;
     static String cardText;
     static String cardTextBack;
     static boolean cardIsMarked;
 
-    static int cardDiff = 0;
+    static int deckLength;
 
     // Input
     static int selectedCardIndex = 0;
     static boolean showOnlyMarked = false;
+    static String newCardDataFront;
+    static String newCardDataBack;
 
     public flashcard() throws IOException
     {
@@ -151,8 +154,8 @@ public class flashcard extends app implements ActionListener
 
 		// checking for end of file
 		while (line != null) {
-            listOfStrings.add(line);
-			line = bf.readLine();
+            listOfCards.add(line);
+			line = fileFinder.readLine();
 		}
         
 		// closing bufferreader object
@@ -160,7 +163,7 @@ public class flashcard extends app implements ActionListener
         
 		// storing the data in arraylist to array
 		String cardInfo[] = listOfCards.toArray(new String[0]);
-        
+        deckLength = cardInfo.length;
         try {
             deckTitle = cardInfo[0];
             cardText = cardInfo[1 + (selectedCardIndex*3)];
@@ -207,7 +210,9 @@ public class flashcard extends app implements ActionListener
 			markCard();
 		} else if ("new_card".equals(e.getActionCommand())) {
 			System.out.println("Opening new card UI...");
-			String newCardData = JOptionPane.showInputDialog("Card info \nFormat: Front,Back");
+			newCardDataFront = JOptionPane.showInputDialog("Card info \nFront");
+			newCardDataBack = JOptionPane.showInputDialog("Card info \nBack");
+            // System.out.println(newCardDataBack);
 			newCard();
 		} else if ("back".equals(e.getActionCommand())) {
 			System.out.println("Returning to main menu...");
@@ -219,7 +224,7 @@ public class flashcard extends app implements ActionListener
 	}
 
 	static void increaseCardIndex() throws IOException {
-		if ((selectedCardIndex + 1)<= 10)
+		if ((selectedCardIndex + 1)<= deckLength)
 		{
 			selectedCardIndex++;
 			updateCurrentCard();
@@ -227,7 +232,7 @@ public class flashcard extends app implements ActionListener
 	}
 
 	static void decreaseCardIndex() throws IOException {
-		if ((selectedCardIndex - 1) > 0)
+		if ((selectedCardIndex - 1) >= 0)
 		{
 			selectedCardIndex--;
 			updateCurrentCard();
@@ -245,6 +250,11 @@ public class flashcard extends app implements ActionListener
 	static void markCard() {
 	}
 	static void newCard() {
+        try (FileWriter myWriter = new FileWriter("decks/" + selectedDeckFileName, true)) {
+			myWriter.write("\n" + newCardDataFront);
+			myWriter.write("\n" + newCardDataBack);
+			myWriter.write("\nFALSE");
+		} catch (IOException e) {}
 	}
 	static void backToMenu() {
 		displayMenu(frame);

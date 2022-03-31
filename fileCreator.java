@@ -8,9 +8,7 @@ public class fileCreator extends app
     {
 		try (FileWriter myWriter = new FileWriter("decks/" + "deck_" + deckName + ".txt", true)) {
 			myWriter.write(deckName);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		} catch (IOException e) {}
 
 		System.out.println("Successfully created the file: " + deckName + ".txt");
 		mainMenu.updateDeckArray();
