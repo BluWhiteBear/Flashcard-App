@@ -1,7 +1,0 @@
-New Deck
-Front of Card
-Back of Card
-FALSE
-Card 2 Front
-Card 2 Back
-FALSE
