@@ -5,7 +5,10 @@ import javax.swing.event.*;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class flashcard extends app implements ActionListener {
+
+
+public class flashcard extends app implements ActionListener
+{
     // UI Objects
     private JButton flipCard;
     private JButton increaseCard;
@@ -28,7 +31,8 @@ public class flashcard extends app implements ActionListener {
     static int selectedCardIndex = 0;
     static boolean showOnlyMarked = false;
 
-    public flashcard() {
+    public flashcard()
+    {
         //Construct components, sets command names, and sets their styles
         flipCard = new JButton (cardText);
         flipCard.setActionCommand("flip_card");
@@ -125,7 +129,8 @@ public class flashcard extends app implements ActionListener {
     }
 
     // This is where the flashcards call their functions
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
         if ("increase_card".equals(e.getActionCommand())) {
             System.out.println("Showing next card...");
             increaseCardIndex();

@@ -5,7 +5,10 @@ import javax.swing.event.*;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class mainMenu extends app implements ActionListener {
+
+
+public class mainMenu extends app implements ActionListener
+{
     // UI Objects
     private JLabel deckName;
     private JButton newDeck;
@@ -22,7 +25,8 @@ public class mainMenu extends app implements ActionListener {
 
     // Variable Declaration
 
-    public mainMenu() {
+    public mainMenu()
+    {
         // Construct components, sets command names, and sets their styles
 
         deckButton_1 = new JButton ("deckButton_1");
@@ -154,7 +158,8 @@ public class mainMenu extends app implements ActionListener {
     }
 
     // This is where the flashcards call their functions
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
         if ("deckButton_1".equals(e.getActionCommand())){
             System.out.println("Opening Deck Index 1...");
             openDeckIndex1();

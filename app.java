@@ -1,8 +1,10 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.io.FileWriter;
 import javax.swing.*;
 import javax.swing.event.*;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 
 public class app extends JPanel
@@ -12,8 +14,6 @@ public class app extends JPanel
     Color fontColor = (new Color(255, 255, 255));
     
     static String deckFileName;
-    
-   //stuff
     
     //Creates and displays GUI
     public static JFrame frame = new JFrame("Flash Cards | Java Swing");
