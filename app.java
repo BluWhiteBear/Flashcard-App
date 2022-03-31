@@ -22,6 +22,7 @@ public class app extends JPanel
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
+		// Adds main menu to viewport at app start
 		displayMenu(frame);
 	}
 

@@ -167,9 +167,7 @@ public class flashcard extends app implements ActionListener
             cardTextBack = cardInfo[2 + (selectedCardIndex*3)];
             cardIsMarked = Boolean.parseBoolean(cardInfo[3 + (selectedCardIndex*3)]);
             updateFlashcardText();
-        } catch (Exception e) {
-            //TODO: handle exception
-        }
+        } catch (Exception e) {}
     }
 
     public static void updateFlashcardText()
