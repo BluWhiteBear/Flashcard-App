@@ -7,21 +7,24 @@ import java.io.IOException;
 
 
 
+
+
+
 public class fileCreator extends app
 {
 
-    public static void newFile(String deckFileName)
+    public static void newFile(String deckName)
     {
-        try (FileWriter myWriter = new FileWriter("decks/" + deckFileName + ".txt", true))
+        try (FileWriter myWriter = new FileWriter("decks/" + "deck_" + deckName + ".txt", true))
         {
-            myWriter.write(deckFileName + " Deck"); 
+            myWriter.write(deckName); 
         } 
         catch (IOException e)
         {
             e.printStackTrace();
         }
 
-        System.out.println("Successfully created the file: " + deckFileName + ".txt");
+        System.out.println("Successfully created the file: " + deckName + ".txt");
     }
 
     public static void delFile()

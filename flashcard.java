@@ -7,6 +7,9 @@ import java.io.IOException;
 
 
 
+
+
+
 public class flashcard extends app implements ActionListener
 {
     // UI Objects
@@ -126,6 +129,12 @@ public class flashcard extends app implements ActionListener
         markedToggle.setBounds (570, 245, 110, 50);
         newCard.setBounds (870, 5, 45, 45);
         returnToMenu.setBounds (5, 5, 105, 30);
+    }
+
+    // Updates the current card based on the selected deck and index
+    public static void updateCurrentCard()
+    {
+        
     }
 
     // This is where the flashcards call their functions
