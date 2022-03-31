@@ -1,7 +1,7 @@
 DoNotDelete Deck
-front
+front keep
 back
-false
+true
 front
 back
 true

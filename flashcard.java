@@ -18,10 +18,10 @@ import java.util.List;
 public class flashcard extends app implements ActionListener
 {
     // UI Objects
-    private JButton flipCard;
+    private static JButton flipCard;
     private JButton increaseCard;
     private JButton decreaseCard;
-    private JLabel deckName;
+    private static JLabel deckName;
     private JButton shuffleDeck;
     private JCheckBox markedOnlyToggle;
     private JCheckBox markedToggle;
@@ -31,9 +31,10 @@ public class flashcard extends app implements ActionListener
     // Variable Declaration
     static String newCardData;
     // Output
-    static String deckTitle = "Long Placeholder Deck Name";
-    static String cardText = "This is placeholder content for testing the text wrap on this big ol' button. This bit of text is particularly long. Hopefully it's wrapping correctly...";
-    static boolean cardIsMarked = false;
+    static String deckTitle;
+    static String cardText;
+    static String cardTextBack;
+    static boolean cardIsMarked;
 
     // Input
     static int selectedCardIndex = 0;
@@ -41,6 +42,8 @@ public class flashcard extends app implements ActionListener
 
     public flashcard() throws IOException
     {
+
+        
         //Construct components, sets command names, and sets their styles
         flipCard = new JButton (cardText);
         flipCard.setActionCommand("flip_card");
@@ -136,18 +139,17 @@ public class flashcard extends app implements ActionListener
         returnToMenu.setBounds (5, 5, 105, 30);
 
         updateCurrentCard();
+        updateFlashcardText();
     }
 
     // Updates the current card based on the selected deck and index
     public static void updateCurrentCard() throws IOException{
-        
-		// String filename = "deck_DoNotDelete.txt";
 
 		// list that holds strings of a file
 		List<String> listOfStrings = new ArrayList<String>();
 	
 		// load data from file
-		BufferedReader bf = new BufferedReader(new FileReader("decks/" + decks[0]));
+		BufferedReader bf = new BufferedReader(new FileReader("decks/" + selectedDeckFileName));
 	
 		// read entire line as string
 		String line = bf.readLine();
@@ -162,14 +164,31 @@ public class flashcard extends app implements ActionListener
 		bf.close();
 	
 		// storing the data in arraylist to array
-		String[] cardInfo = listOfStrings.toArray(new String[0]);
+		String cardInfo[] = listOfStrings.toArray(new String[0]);
 	
+      
 		// printing each line of file
 		// which is stored in array
 		for (String str : cardInfo) {
 			System.out.println(str);
 		}
-		System.out.println(cardInfo[0]);
+
+        try {
+            deckTitle = cardInfo[0];
+            cardText = cardInfo[1];
+            cardTextBack = cardInfo[2];
+            cardIsMarked = Boolean.parseBoolean(cardInfo[3]);
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+    }
+
+    public static void updateFlashcardText()
+    {
+        try {
+            deckName.setText(deckTitle);
+            flipCard.setText(cardText);
+        } catch (Exception e) {}
     }
 
     // This is where the flashcards call their functions
@@ -224,7 +243,11 @@ public class flashcard extends app implements ActionListener
     }
 
     static void flipCard() {
-
+        if (flipCard.getText() == cardText) {
+            flipCard.setText(cardTextBack);
+        } else {
+            flipCard.setText(cardText);
+        }
     }
 
     static void showOnlyMarked() {
