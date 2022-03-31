@@ -36,7 +36,6 @@ public class mainMenu extends app implements ActionListener
         updateDeckArray();
 
         // Construct components, sets command names, and sets their styles
-
         deckButton_1 = new JButton ("No Deck Found");
         deckButton_1.setActionCommand("deckButton_1");
         deckButton_1.setForeground(fontColor);
