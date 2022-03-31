@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 
 
@@ -36,14 +37,14 @@ public class mainMenu extends app implements ActionListener
 
         // Construct components, sets command names, and sets their styles
 
-        deckButton_1 = new JButton ("deckButton_1");
+        deckButton_1 = new JButton ("No Deck Found");
         deckButton_1.setActionCommand("deckButton_1");
         deckButton_1.setForeground(fontColor);
         deckButton_1.setBackground(buttonColor);
         deckButton_1.setFocusPainted(false);
         deckButton_1.setBorderPainted(false);
 
-        deckButton_2 = new JButton ("deckButton_2");
+        deckButton_2 = new JButton ("No Deck Found");
         deckButton_2.setActionCommand("deckButton_2");
         deckButton_2.setForeground(fontColor);
         deckButton_2.setBackground(buttonColor);
@@ -53,14 +54,14 @@ public class mainMenu extends app implements ActionListener
         deckName = new JLabel ("Deck Name");
         deckName.setForeground(fontColor);
 
-        deckButton_3 = new JButton ("deckButton_3");
+        deckButton_3 = new JButton ("No Deck Found");
         deckButton_3.setActionCommand("deckButton_3");
         deckButton_3.setForeground(fontColor);
         deckButton_3.setBackground(buttonColor);
         deckButton_3.setFocusPainted(false);
         deckButton_3.setBorderPainted(false);
 
-        deckButton_4 = new JButton ("deckButton_4");
+        deckButton_4 = new JButton ("No Deck Found");
         deckButton_4.setActionCommand("deckButton_4");
         deckButton_4.setForeground(fontColor);
         deckButton_4.setBackground(buttonColor);
@@ -74,28 +75,28 @@ public class mainMenu extends app implements ActionListener
         newDeck.setFocusPainted(false);
         newDeck.setBorderPainted(false);
 
-        trash_1 = new JButton ("🗑");
+        trash_1 = new JButton ("X");
         trash_1.setActionCommand("trash_1");
         trash_1.setForeground(fontColor);
         trash_1.setBackground(buttonColor);
         trash_1.setFocusPainted(false);
         trash_1.setBorderPainted(false);
 
-        trash_2 = new JButton ("🗑");
+        trash_2 = new JButton ("X");
         trash_2.setActionCommand("trash_2");
         trash_2.setForeground(fontColor);
         trash_2.setBackground(buttonColor);
         trash_2.setFocusPainted(false);
         trash_2.setBorderPainted(false);
 
-        trash_3 = new JButton ("🗑");
+        trash_3 = new JButton ("X");
         trash_3.setActionCommand("trash_3");
         trash_3.setForeground(fontColor);
         trash_3.setBackground(buttonColor);
         trash_3.setFocusPainted(false);
         trash_3.setBorderPainted(false);
 
-        trash_4 = new JButton ("🗑");
+        trash_4 = new JButton ("X");
         trash_4.setActionCommand("trash_4");
         trash_4.setForeground(fontColor);
         trash_4.setBackground(buttonColor);
@@ -179,10 +180,21 @@ public class mainMenu extends app implements ActionListener
 
     public static void populateDeckButtons()
     {
-        deckButton_1.setText(decks[0].substring(5, decks[0].length() - 4));
-        deckButton_2.setText(decks[1].substring(5, decks[1].length() - 4));
-        deckButton_3.setText(decks[2].substring(5, decks[2].length() - 4));
-        deckButton_4.setText(decks[3].substring(5, decks[3].length() - 4));
+        try {
+            deckButton_1.setText(decks[0].substring(5, decks[0].length() - 4));
+        } catch (Exception e) {}
+        
+        try {
+            deckButton_2.setText(decks[1].substring(5, decks[1].length() - 4));
+        } catch (Exception e) {}
+        
+        try {
+            deckButton_3.setText(decks[2].substring(5, decks[2].length() - 4));
+        } catch (Exception e) {}
+        
+        try {
+            deckButton_4.setText(decks[3].substring(5, decks[3].length() - 4));
+        } catch (Exception e) {}
     }
 
     // This is where the flashcards call their functions
