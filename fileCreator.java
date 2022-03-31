@@ -25,6 +25,8 @@ public class fileCreator extends app
         }
 
         System.out.println("Successfully created the file: " + deckName + ".txt");
+        mainMenu.updateDeckArray();
+        mainMenu.populateDeckButtons();
     }
 
     public static void delFile()
