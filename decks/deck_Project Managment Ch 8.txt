@@ -1,0 +1,22 @@
+Deck 4
+Project
+a set of interrelated activities necessary to achieve establish goals using a specified amount of time, budget, and resources
+FALSE
+Project management
+the application of the knowledge, skills, tools, and techniques necessary to successfully complete a project
+FALSE
+What are some components of project management?
+Project initiation, project planning, project execution, project control, project closure
+FALSE
+Project manager
+the person responsible for delivering the goals of the project
+FALSE
+Project time
+the amount of time available to complete the project
+FALSE
+Project cost
+the budgeted amount available for the project
+FALSE
+Project scope
+the activities that must be completed to achieve a projects end goal
+FALSE
