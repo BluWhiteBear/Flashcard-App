@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,15 +12,13 @@ import java.nio.file.Paths;
 
 public class mainMenu extends app implements ActionListener
 {
-    static String decks[];
-
     // UI Objects
     private JLabel deckName;
     private JButton newDeck;
-    private JButton deckButton_1;
-    private JButton deckButton_2;
-    private JButton deckButton_3;
-    private JButton deckButton_4;
+    private static JButton deckButton_1;
+    private static JButton deckButton_2;
+    private static JButton deckButton_3;
+    private static JButton deckButton_4;
     private JButton trash_1;
     private JButton trash_2;
     private JButton trash_3;
@@ -33,7 +30,7 @@ public class mainMenu extends app implements ActionListener
 
     public mainMenu()
     {
-        createArrayOfDeckNames();
+        updateDeckArray();
 
         // Construct components, sets command names, and sets their styles
 
@@ -163,16 +160,27 @@ public class mainMenu extends app implements ActionListener
         trash_4.setBounds (690, 220, 55, 52);
         decrementPage.setBounds (190, 280, 100, 25);
         incrementPage.setBounds (645, 280, 100, 25);
+
+        populateDeckButtons();
     }
 
-    public static void createArrayOfDeckNames()
+    // Updates the array storing the names of all files in the /decks folder
+    public static void updateDeckArray()
     {
         File folder = new File("decks/");
         decks = folder.list();
         for (int i = 0; i < decks.length; i++)
         {
-            System.out.println("File Names: " + decks[i]);
+            System.out.println("Loaded File: " + decks[i]);
         }
+    }
+
+    public static void populateDeckButtons()
+    {
+        deckButton_1.setText(decks[0].substring(5, decks[0].length() - 4));
+        deckButton_2.setText(decks[1].substring(5, decks[1].length() - 4));
+        deckButton_3.setText(decks[2].substring(5, decks[2].length() - 4));
+        deckButton_4.setText(decks[3].substring(5, decks[3].length() - 4));
     }
 
     // This is where the flashcards call their functions

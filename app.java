@@ -7,12 +7,16 @@ import java.io.IOException;
 
 
 
+
+
+
 public class app extends JPanel
 {
     Color backgroundColor = (new Color(24, 24, 24));
     Color buttonColor = (new Color(35, 35, 35));
     Color fontColor = (new Color(255, 255, 255));
 
+    static String decks[];
     static String selectedDeckFileName;
     
     //Creates and displays GUI
