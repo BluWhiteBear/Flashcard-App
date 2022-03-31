@@ -5,6 +5,9 @@ import javax.swing.event.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -192,19 +195,19 @@ public class mainMenu extends app implements ActionListener
     {
         try {
             deckButton_1.setText(decks[0].substring(5, decks[0].length() - 4));
-        } catch (Exception e) {}
+        } catch (Exception e) {deckButton_1.setText("No Deck Found");}
         
         try {
             deckButton_2.setText(decks[1].substring(5, decks[1].length() - 4));
-        } catch (Exception e) {}
+        } catch (Exception e) {deckButton_2.setText("No Deck Found");}
         
         try {
             deckButton_3.setText(decks[2].substring(5, decks[2].length() - 4));
-        } catch (Exception e) {}
+        } catch (Exception e) {deckButton_3.setText("No Deck Found");}
         
         try {
             deckButton_4.setText(decks[3].substring(5, decks[3].length() - 4));
-        } catch (Exception e) {}
+        } catch (Exception e) {deckButton_4.setText("No Deck Found");}
     }
 
     // This is where the flashcards call their functions
@@ -214,37 +217,25 @@ public class mainMenu extends app implements ActionListener
             System.out.println("Opening Deck Index 1...");
             try {
                 openDeckIndex1();
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
+            } catch (IOException e1) {inputErrorMessage();}
         }
         else if ("deckButton_2".equals(e.getActionCommand())) {
             System.out.println("Opening Deck Index 2...");
             try {
                 openDeckIndex2();
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
+            } catch (IOException e1) {inputErrorMessage();}
         }
         else if ("deckButton_3".equals(e.getActionCommand())) {
             System.out.println("Opening Deck Index 3...");
             try {
                 openDeckIndex3();
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
+            } catch (IOException e1) {inputErrorMessage();}
         }
         else if ("deckButton_4".equals(e.getActionCommand())) {
             System.out.println("Opening Deck Index 4...");
             try {
                 openDeckIndex4();
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
+            } catch (IOException e1) {inputErrorMessage();}
         }
         else if ("new_deck".equals(e.getActionCommand())) {
             System.out.println("Opening new deck UI...");
@@ -255,8 +246,40 @@ public class mainMenu extends app implements ActionListener
         }
         else if ("file_browser".equals(e.getActionCommand())) {
             try {
-                Runtime.getRuntime().exec("explorer.exe /select, /decks");
-            } catch (IOException IOException) {}
+                Runtime.getRuntime().exec("explorer.exe /select, decks");
+            } catch (IOException IOException) {inputErrorMessage();}
+        }
+        else if ("trash_1".equals(e.getActionCommand())) {
+            try {
+                Files.deleteIfExists(
+                Paths.get("decks/" + decks[0]));
+                updateDeckArray();
+                populateDeckButtons();
+            } catch (ArrayIndexOutOfBoundsException | IOException ej) {inputErrorMessage();} 
+        }
+        else if ("trash_2".equals(e.getActionCommand())) {
+            try {
+                Files.deleteIfExists(
+                Paths.get("decks/" + decks[1]));
+                updateDeckArray();
+                populateDeckButtons();
+            } catch (ArrayIndexOutOfBoundsException | IOException ej) {inputErrorMessage();} 
+        }
+        else if ("trash_3".equals(e.getActionCommand())) {
+            try {
+                Files.deleteIfExists(
+                Paths.get("decks/" + decks[2]));
+                updateDeckArray();
+                populateDeckButtons();
+            } catch (ArrayIndexOutOfBoundsException | IOException ej) {inputErrorMessage();} 
+        }
+        else if ("trash_4".equals(e.getActionCommand())) {
+            try {
+                Files.deleteIfExists(
+                Paths.get("decks/" + decks[3]));
+                updateDeckArray();
+                populateDeckButtons();
+            } catch (ArrayIndexOutOfBoundsException | IOException ej) {inputErrorMessage();} 
         }
         else {
             System.out.println("Input error...");
@@ -265,23 +288,31 @@ public class mainMenu extends app implements ActionListener
     }
 
     static void openDeckIndex1() throws IOException{
-        selectedDeckFileName = decks[0];
-        displayFlashcards(frame);
+        try {
+            selectedDeckFileName = decks[0];
+            displayFlashcards(frame);
+            } catch (ArrayIndexOutOfBoundsException e) {inputErrorMessage();}
     }
 
     static void openDeckIndex2() throws IOException{
-        selectedDeckFileName = decks[1];
-        displayFlashcards(frame);
+        try {
+            selectedDeckFileName = decks[1];
+            displayFlashcards(frame);
+            } catch (ArrayIndexOutOfBoundsException e) {inputErrorMessage();}
     }
 
     static void openDeckIndex3() throws IOException{
-        selectedDeckFileName = decks[2];
-        displayFlashcards(frame);
+        try {
+            selectedDeckFileName = decks[2];
+            displayFlashcards(frame);
+            } catch (ArrayIndexOutOfBoundsException e) {inputErrorMessage();}
     }
 
     static void openDeckIndex4() throws IOException {
-        selectedDeckFileName = decks[3];
-        displayFlashcards(frame);
+        try {
+            selectedDeckFileName = decks[3];
+            displayFlashcards(frame);
+            } catch (ArrayIndexOutOfBoundsException e) {inputErrorMessage();}
     }
 
     static void createNewDeck(String deckFileName) {
