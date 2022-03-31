@@ -202,19 +202,39 @@ public class mainMenu extends app implements ActionListener
     {
         if ("deckButton_1".equals(e.getActionCommand())){
             System.out.println("Opening Deck Index 1...");
-            openDeckIndex1();
+            try {
+                openDeckIndex1();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         }
         else if ("deckButton_2".equals(e.getActionCommand())) {
             System.out.println("Opening Deck Index 2...");
-            openDeckIndex2();
+            try {
+                openDeckIndex2();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         }
         else if ("deckButton_3".equals(e.getActionCommand())) {
             System.out.println("Opening Deck Index 3...");
-            openDeckIndex3();
+            try {
+                openDeckIndex3();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         }
         else if ("deckButton_4".equals(e.getActionCommand())) {
             System.out.println("Opening Deck Index 4...");
-            openDeckIndex4();
+            try {
+                openDeckIndex4();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         }
         else if ("new_deck".equals(e.getActionCommand())) {
             System.out.println("Opening new deck UI...");
@@ -229,22 +249,22 @@ public class mainMenu extends app implements ActionListener
         }
     }
 
-    static void openDeckIndex1() {
+    static void openDeckIndex1() throws IOException{
         selectedDeckFileName = decks[0];
         displayFlashcards(frame);
     }
 
-    static void openDeckIndex2() {
+    static void openDeckIndex2() throws IOException{
         selectedDeckFileName = decks[1];
         displayFlashcards(frame);
     }
 
-    static void openDeckIndex3() {
+    static void openDeckIndex3() throws IOException{
         selectedDeckFileName = decks[2];
         displayFlashcards(frame);
     }
 
-    static void openDeckIndex4() {
+    static void openDeckIndex4() throws IOException {
         selectedDeckFileName = decks[3];
         displayFlashcards(frame);
     }
