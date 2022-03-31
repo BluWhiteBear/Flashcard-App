@@ -36,6 +36,8 @@ public class flashcard extends app implements ActionListener
     static String cardTextBack;
     static boolean cardIsMarked;
 
+    static int cardDiff = 0;
+
     // Input
     static int selectedCardIndex = 0;
     static boolean showOnlyMarked = false;
@@ -139,45 +141,38 @@ public class flashcard extends app implements ActionListener
         returnToMenu.setBounds (5, 5, 105, 30);
 
         updateCurrentCard();
-        updateFlashcardText();
     }
-
+    
     // Updates the current card based on the selected deck and index
     public static void updateCurrentCard() throws IOException{
-
-		// list that holds strings of a file
-		List<String> listOfStrings = new ArrayList<String>();
-	
+        
+        // list that holds strings of a file
+		List<String> listOfCards = new ArrayList<String>();
+        
 		// load data from file
-		BufferedReader bf = new BufferedReader(new FileReader("decks/" + selectedDeckFileName));
-	
+		BufferedReader fileFinder = new BufferedReader(new FileReader("decks/" + selectedDeckFileName));
+        
 		// read entire line as string
-		String line = bf.readLine();
-	
+		String line = fileFinder.readLine();
+        
 		// checking for end of file
 		while (line != null) {
-			listOfStrings.add(line);
-			line = bf.readLine();
+            listOfCards.add(line);
+			line = fileFinder.readLine();
 		}
-	
+        
 		// closing bufferreader object
-		bf.close();
-	
+		fileFinder.close();
+        
 		// storing the data in arraylist to array
-		String cardInfo[] = listOfStrings.toArray(new String[0]);
-	
-      
-		// printing each line of file
-		// which is stored in array
-		for (String str : cardInfo) {
-			System.out.println(str);
-		}
-
+		String cardInfo[] = listOfCards.toArray(new String[0]);
+        
         try {
             deckTitle = cardInfo[0];
-            cardText = cardInfo[1];
-            cardTextBack = cardInfo[2];
-            cardIsMarked = Boolean.parseBoolean(cardInfo[3]);
+            cardText = cardInfo[1 + (selectedCardIndex*3)];
+            cardTextBack = cardInfo[2 + (selectedCardIndex*3)];
+            cardIsMarked = Boolean.parseBoolean(cardInfo[3 + (selectedCardIndex*3)]);
+            updateFlashcardText();
         } catch (Exception e) {
             //TODO: handle exception
         }
@@ -219,7 +214,8 @@ public class flashcard extends app implements ActionListener
         }
         else if ("new_card".equals(e.getActionCommand())) {
             System.out.println("Opening new card UI...");
-            String newCardData = JOptionPane.showInputDialog("Card info \nFormat: Front,Back");
+            String newCardDataFront = JOptionPane.showInputDialog("Card info \nFront");
+            String newCardDataBack = JOptionPane.showInputDialog("Card info \nBack");
             newCard();
         }
         else if ("back".equals(e.getActionCommand())) {
@@ -233,13 +229,23 @@ public class flashcard extends app implements ActionListener
     }
 
     static void increaseCardIndex() {
-        if ((selectedCardIndex + 1) <= 10)
+        if ((selectedCardIndex + 3) <= 10)
             selectedCardIndex++;
+
+        if (flipCard.getText() == cardTextBack) {
+            flipCard.setText(cardText);
+        }
+
     }
 
     static void decreaseCardIndex() {
-        if ((selectedCardIndex - 1) > 0)
+        if ((selectedCardIndex - 3) > 0)
             selectedCardIndex--;
+
+        if (flipCard.getText() == cardTextBack) {
+            flipCard.setText(cardText);
+        }
+
     }
 
     static void flipCard() {
