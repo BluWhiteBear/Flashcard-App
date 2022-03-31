@@ -184,91 +184,72 @@ public class flashcard extends app implements ActionListener
 	// This is where the flashcards call their functions
 	public void actionPerformed(ActionEvent e)
     {
-        if ("increase_card".equals(e.getActionCommand())) {
-            System.out.println("Showing next card...");
-            increaseCardIndex();
-        }
-        else if ("decrease_card".equals(e.getActionCommand())) {
-            System.out.println("Showing previous card...");
-            decreaseCardIndex();
-        }
-        else if ("shuffle".equals(e.getActionCommand())) {
-            System.out.println("Deck of cards has been shuffled...");
-        }
-        else if ("flip_card".equals(e.getActionCommand())) {
-            System.out.println("Flipping current card...");
-            flipCard();
-        }
-        else if ("toggle_show_marked".equals(e.getActionCommand())) {
-            System.out.println("Now showing only marked cards...");
-            showOnlyMarked();
-        }
-        else if ("toggle_marked".equals(e.getActionCommand())) {
-            System.out.println("This card has been marked for later...");
-            markCard();
-        }
-        else if ("new_card".equals(e.getActionCommand())) {
-            System.out.println("Opening new card UI...");
-            String newCardDataFront = JOptionPane.showInputDialog("Card info \nFront");
-            String newCardDataBack = JOptionPane.showInputDialog("Card info \nBack");
-            newCard();
-        }
-        else if ("back".equals(e.getActionCommand())) {
-            System.out.println("Returning to main menu...");
-            backToMenu();
-        }
-        else {
-            System.out.println("Input error...");
-            inputErrorMessage();
-        }
-    }
+		if ("increase_card".equals(e.getActionCommand())) {
+			System.out.println("Showing next card...");
+			try {
+				increaseCardIndex();
+			} catch (IOException e1) {}
+		} else if ("decrease_card".equals(e.getActionCommand())) {
+			System.out.println("Showing previous card...");
+			try {
+				decreaseCardIndex();
+			} catch (IOException e2) {}
+		} else if ("shuffle".equals(e.getActionCommand())) {
+			System.out.println("Deck of cards has been shuffled...");
+		} else if ("flip_card".equals(e.getActionCommand())) {
+			System.out.println("Flipping current card...");
+			flipCard();
+		} else if ("toggle_show_marked".equals(e.getActionCommand())) {
+			System.out.println("Now showing only marked cards...");
+			showOnlyMarked();
+		} else if ("toggle_marked".equals(e.getActionCommand())) {
+			System.out.println("This card has been marked for later...");
+			markCard();
+		} else if ("new_card".equals(e.getActionCommand())) {
+			System.out.println("Opening new card UI...");
+			String newCardData = JOptionPane.showInputDialog("Card info \nFormat: Front,Back");
+			newCard();
+		} else if ("back".equals(e.getActionCommand())) {
+			System.out.println("Returning to main menu...");
+			backToMenu();
+		} else {
+			System.out.println("Input error...");
+			inputErrorMessage();
+		}
+	}
 
-    static void increaseCardIndex() {
-        if ((selectedCardIndex + 3) <= 10)
-            selectedCardIndex++;
+	static void increaseCardIndex() throws IOException {
+		if ((selectedCardIndex + 1)<= 10)
+		{
+			selectedCardIndex++;
+			updateCurrentCard();
+		}
+	}
 
-        if (flipCard.getText() == cardTextBack) {
-            flipCard.setText(cardText);
-        }
-
-    }
-
-    static void decreaseCardIndex() {
-        if ((selectedCardIndex - 3) > 0)
-            selectedCardIndex--;
-
-        if (flipCard.getText() == cardTextBack) {
-            flipCard.setText(cardText);
-        }
-
-    }
-
+	static void decreaseCardIndex() throws IOException {
+		if ((selectedCardIndex - 1) > 0)
+		{
+			selectedCardIndex--;
+			updateCurrentCard();
+		}
+	}
     static void flipCard() {
-        if (flipCard.getText() == cardText) {
-            flipCard.setText(cardTextBack);
-        } else {
-            flipCard.setText(cardText);
-        }
-    }
-
-    static void showOnlyMarked() {
-
-    }
-
-    static void markCard() {
-
-    }
-
-    static void newCard() {
-
-    }
-
-    static void backToMenu() {
-        displayMenu(frame);
-    }
-
-    static void inputErrorMessage() {
-        JOptionPane.showMessageDialog(null, "Invalid input...", "Flash Cards | INPUT ERROR", 0);
-    }
+		if (flipCard.getText() == cardText) {
+			flipCard.setText(cardTextBack);
+		} else {
+			flipCard.setText(cardText);
+		}
+	}
+	static void showOnlyMarked() {
+	}
+	static void markCard() {
+	}
+	static void newCard() {
+	}
+	static void backToMenu() {
+		displayMenu(frame);
+	}
+	static void inputErrorMessage() {
+		JOptionPane.showMessageDialog(null, "Invalid input...", "Flash Cards | INPUT ERROR", 0);
+	}
 }
-
