@@ -3,16 +3,11 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class mainMenu extends app implements ActionListener
 {
-	static int currentDeckIndex = 1;
-
 	// UI Objects
 	private JLabel deckName;
 	private JButton newDeck;
@@ -29,12 +24,16 @@ public class mainMenu extends app implements ActionListener
 	private JButton fileBrowser;
 
 	// Variable Declaration
+	static int currentDeckIndex;
 
 	public mainMenu()
     {
 		updateDeckArray();
 
 		// Construct components, sets command names, and sets their styles
+		deckName = new JLabel("Deck Name");
+		deckName.setForeground(fontColor);
+
 		deckButton_1 = new JButton("No Deck Found");
 		deckButton_1.setActionCommand("deckButton_1");
 		deckButton_1.setForeground(fontColor);
@@ -48,9 +47,6 @@ public class mainMenu extends app implements ActionListener
 		deckButton_2.setBackground(buttonColor);
 		deckButton_2.setFocusPainted(false);
 		deckButton_2.setBorderPainted(false);
-
-		deckName = new JLabel("Deck Name");
-		deckName.setForeground(fontColor);
 
 		deckButton_3 = new JButton("No Deck Found");
 		deckButton_3.setActionCommand("deckButton_3");
@@ -186,6 +182,7 @@ public class mainMenu extends app implements ActionListener
 		}
 	}
 
+	// Updates the rendered text on buttons
 	public static void populateDeckButtons()
     {
         try {
