@@ -156,20 +156,13 @@ public class flashcard extends app implements ActionListener
 		// storing the data in arraylist to array
 		String cardInfo[] = listOfStrings.toArray(new String[0]);
 
-		// printing each line of file
-		// which is stored in array
-		for (String str: cardInfo) {
-			System.out.println(str);
-		}
-
 		try {
 			deckTitle = cardInfo[0];
-			cardText = cardInfo[1];
-			cardTextBack = cardInfo[2];
-			cardIsMarked = Boolean.parseBoolean(cardInfo[3]);
-		} catch (Exception e) {
-			//TODO: handle exception
-		}
+			cardText = cardInfo[(selectedCardIndex*3) + 1];
+			cardTextBack = cardInfo[(selectedCardIndex*3) + 2];
+			cardIsMarked = Boolean.parseBoolean(cardInfo[(selectedCardIndex*3) + 3]);
+			updateFlashcardText();
+		} catch (Exception e) {}
 	}
 
 	public static void updateFlashcardText()
@@ -184,11 +177,15 @@ public class flashcard extends app implements ActionListener
 	public void actionPerformed(ActionEvent e)
     {
 		if ("increase_card".equals(e.getActionCommand())) {
-			System.out.println("Showing next card...");
-			increaseCardIndex();
+			System.out.println("Showing next card..." + selectedCardIndex);
+			try {
+				increaseCardIndex();
+			} catch (IOException e1) {}
 		} else if ("decrease_card".equals(e.getActionCommand())) {
-			System.out.println("Showing previous card...");
-			decreaseCardIndex();
+			System.out.println("Showing previous card..." + selectedCardIndex);
+			try {
+				decreaseCardIndex();
+			} catch (IOException e1) {}
 		} else if ("shuffle".equals(e.getActionCommand())) {
 			System.out.println("Deck of cards has been shuffled...");
 		} else if ("flip_card".equals(e.getActionCommand())) {
@@ -213,14 +210,20 @@ public class flashcard extends app implements ActionListener
 		}
 	}
 
-	static void increaseCardIndex() {
-		if ((selectedCardIndex + 1)<= 10)
+	static void increaseCardIndex() throws IOException {
+		if ((selectedCardIndex + 3)<= 10)
+		{
 			selectedCardIndex++;
+			updateCurrentCard();
+		}
 	}
 
-	static void decreaseCardIndex() {
-		if ((selectedCardIndex - 1) > 0)
+	static void decreaseCardIndex() throws IOException {
+		if ((selectedCardIndex - 3) > 0)
+		{
 			selectedCardIndex--;
+			updateCurrentCard();
+		}
 	}
 
 	static void flipCard() {

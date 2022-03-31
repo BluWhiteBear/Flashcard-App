@@ -16,13 +16,4 @@ public class fileCreator extends app
 		mainMenu.updateDeckArray();
 		mainMenu.populateDeckButtons();
 	}
-
-	public static void delFile() {
-
-	}
-
-	public static void editFile() {
-
-	}
-
 }
