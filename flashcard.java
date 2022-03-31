@@ -1,22 +1,15 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
-import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
-
-
 public class flashcard extends app implements ActionListener
 {
+
     // UI Objects
     private static JButton flipCard;
     private JButton increaseCard;
@@ -155,6 +148,7 @@ public class flashcard extends app implements ActionListener
 		// read entire line as string
 		String line = fileFinder.readLine();
         
+
 		// checking for end of file
 		while (line != null) {
             listOfCards.add(line);
@@ -179,15 +173,16 @@ public class flashcard extends app implements ActionListener
     }
 
     public static void updateFlashcardText()
-    {
-        try {
-            deckName.setText(deckTitle);
-            flipCard.setText(cardText);
-        } catch (Exception e) {}
-    }
 
-    // This is where the flashcards call their functions
-    public void actionPerformed(ActionEvent e)
+    {
+		try {
+			deckName.setText(deckTitle);
+			flipCard.setText(cardText);
+		} catch (Exception e) {}
+	}
+
+	// This is where the flashcards call their functions
+	public void actionPerformed(ActionEvent e)
     {
         if ("increase_card".equals(e.getActionCommand())) {
             System.out.println("Showing next card...");
@@ -276,3 +271,4 @@ public class flashcard extends app implements ActionListener
         JOptionPane.showMessageDialog(null, "Invalid input...", "Flash Cards | INPUT ERROR", 0);
     }
 }
+
